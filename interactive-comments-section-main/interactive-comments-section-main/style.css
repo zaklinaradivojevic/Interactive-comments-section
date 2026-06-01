@@ -1,0 +1,288 @@
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f6fa;
+      font-family: 'Rubik', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #67727e;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      max-width: 730px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* comment card */
+    .comment-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    /* score widget */
+    .score-widget {
+      background: #f5f6fa;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 8px;
+      width: 44px;
+      height: fit-content;
+    }
+
+    .score-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #c5c6ef;
+      display: inline-flex;
+      transition: color 0.2s;
+    }
+
+    .score-btn:hover { color: #5457b6; }
+    .score-num {
+      font-weight: 500;
+      color: #5457b6;
+      font-size: 1rem;
+    }
+
+    /* comment body */
+    .comment-main {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e4e6f0;
+    }
+
+    .username {
+      font-weight: 500;
+      color: #334253;
+    }
+
+    .you-badge {
+      background: #5457b6;
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .timestamp {
+      color: #67727e;
+      font-size: 0.85rem;
+    }
+
+    .comment-content {
+      color: #67727e;
+      word-break: break-word;
+    }
+
+    .replying-to {
+      color: #5457b6;
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    /* actions */
+    .actions {
+      display: flex;
+      gap: 24px;
+      justify-self: end;
+      align-self: start;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .action-btn:hover { opacity: 0.6; }
+    .reply-btn, .edit-btn { color: #5457b6; }
+    .delete-btn { color: #ed6368; }
+
+    /* reply thread */
+    .replies-thread {
+      margin-left: 48px;
+      padding-left: 44px;
+      border-left: 2px solid #e9ebf0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* input cards (new comment & reply forms) */
+    .input-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    .input-card textarea {
+      flex: 1;
+      border: 1px solid #e9ebf0;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 96px;
+      outline: none;
+    }
+
+    .input-card textarea:focus { border-color: #5457b6; }
+
+    .btn-primary {
+      background: #5457b6;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: #7c7fcb; }
+
+    /* edit inline mode */
+    .edit-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .edit-container textarea {
+      width: 100%;
+      border: 1px solid #e9ebf0;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+    }
+
+    /* modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+      z-index: 1000;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-card {
+      background: white;
+      max-width: 400px;
+      width: 90%;
+      padding: 32px;
+      border-radius: 16px;
+    }
+    .modal-card h3 {
+      color: #334253;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .modal-cancel, .modal-delete {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: white;
+    }
+    .modal-cancel { background: #67727e; }
+    .modal-delete { background: #ed6368; }
+    .modal-cancel:hover { background: #4f5a68; }
+    .modal-delete:hover { background: #ff7b80; }
+
+    @media (max-width: 640px) {
+      .comment-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .score-widget {
+        flex-direction: row;
+        width: fit-content;
+        order: 2;
+      }
+      .actions { order: 3; justify-self: start; }
+      .comment-main { order: 1; }
+      .replies-thread {
+        margin-left: 12px;
+        padding-left: 18px;
+      }
+      .input-card {
+        flex-wrap: wrap;
+      }
+      .input-card textarea {
+        order: 1;
+        width: 100%;
+      }
+    }
+  
